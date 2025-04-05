@@ -94,7 +94,7 @@ sudo apt-get install -y certbot python3-certbot-nginx >> $LOG_FILE 2>&1
 # For testing, we'll skip the actual certificate issuance and print instructions
 echo "Certbot installed. To provision SSL certificates, ensure web.example.com and api.example.com point to this VM's public IP." | tee -a $LOG_FILE
 echo "Then run the following commands manually:" | tee -a $LOG_FILE
-echo "  sudo certbot --nginx -d web.example.com --non-interactive --agree-tos --email your_email@example.com" | tee -a $LOG_FILE
-echo "  sudo certbot --nginx -d api.example.com --non-interactive --agree-tos --email your_email@example.com" | tee -a $LOG_FILE
+echo "  sudo certbot --nginx -d web.example.com --non-interactive --agree-tos --email indunilkawishka@gmail.com" | tee -a $LOG_FILE
+echo "  sudo certbot --nginx -d api.example.com --non-interactive --agree-tos --email indunilkawishka@gmail.com" | tee -a $LOG_FILE
 
 echo "Environment setup completed successfully at $(date)" | tee -a $LOG_FILE
