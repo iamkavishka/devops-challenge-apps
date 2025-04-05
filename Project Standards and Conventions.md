@@ -42,14 +42,14 @@ Use the format <resource_type>_<descriptive_name> for resource and data source n
 4. Variable Management
 4.1. Defining Variables
 Define all variables in variables.tf with:
-description: A clear explanation of the variable’s purpose.
+Description: A clear explanation of the variable’s purpose.
 type: Specify the type (e.g., string, list(string)).
 default: Provide a default value only for non-sensitive variables (e.g., location = "East US").
 
 4.2. Sensitive Variables
 Never hardcode sensitive data (e.g., passwords, API keys) in Terraform files.
 Use Azure Key Vault to store sensitive data:
-Store secrets like database credentials, or API keys in Key Vault.
+Store secrets like database credentials or API keys in Key Vault.
 Retrieve secrets in main.tf using azurerm_key_vault_secret resources.
 
 4.3. Variable Files
@@ -77,6 +77,8 @@ Use a remote backend for Terraform state storage to enable collaboration and sta
 Store state files in Azure Blob Storage with a unique key for each project:
                                                   Assignment 1: terraform.tfstate
                                                   Assignment 2: assignment2.tfstate
+
+5.5 Lifecycle Block Usage: Use the lifecycle block with prevent_destroy = true in Assignment 1 for the PostgreSQL server and database to ensure critical resources are not accidentally deleted during Terraform operations.
 
 6. CI/CD Pipelines
 Use GitHub Actions for automation (e.g: deploy.yml in Assignment 1).
