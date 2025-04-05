@@ -1,3 +1,10 @@
+################Shell script to perform the following automation#################
+#Clone the application
+#Build the application
+#Restart the application
+#####################################################################################
+
+
 #!/bin/bash
 
 # Exit on any error
