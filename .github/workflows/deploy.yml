@@ -1,3 +1,5 @@
+# This pipeline will build Docker images, push them to Azure Container Registry (ACR), and deploy to Azure Container Apps.
+
 name: Deploy Web App and API to Azure
 
 on:
@@ -10,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
+      # Step 1: Check out the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -58,4 +60,4 @@ jobs:
           terraform apply -auto-approve
 
 env:
-  ACR_LOGIN_SERVER: wireappsacr<random>.azurecr.io  # Replace with your ACR login server
+  ACR_LOGIN_SERVER: wireappsacr<random>.azurecr.io  # should be replaced with the ACR login server
