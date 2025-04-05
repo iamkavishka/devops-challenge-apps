@@ -1,3 +1,11 @@
+################Shell Script for Environment Setup##################################
+#Installs Node.js and NPM.
+#Installs Nginx and starts it.
+#Creates Nginx configuration files
+#Installs Certbot and provides instructions for provisioning SSL certificates.
+####################################################################################
+
+
 #!/bin/bash
 
 # Exit on any error
