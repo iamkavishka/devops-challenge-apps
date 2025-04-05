@@ -59,7 +59,7 @@ resource "azurerm_key_vault" "main" {
 
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
-    object_id = "00000000-0000-0000-0000-000000000000" # Placeholder; update with ACA identity
+    object_id = "00000000-0000-0000-0000-000000000000" # should update with ACA identity
     secret_permissions = ["Get"]
   }
 }
