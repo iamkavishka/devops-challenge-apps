@@ -52,12 +52,16 @@ jobs:
         run: |
           cd terraform
           terraform init
+        env:
+          ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
 
       # Step 8: Terraform Apply
       - name: Terraform Apply
         run: |
           cd terraform
           terraform apply -auto-approve
+        env:
+          ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
 
 env:
   ACR_LOGIN_SERVER: wireappsacr<random>.azurecr.io  # should be replaced with the ACR login server
