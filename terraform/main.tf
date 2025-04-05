@@ -8,6 +8,13 @@ terraform {
   }
 }
 
+# Call the tagging module
+module "tagging" {
+  source      = "../modules/tagging"
+  project     = "wireapps"
+  environment = "dev"
+}
+
 # Configure the Azure provider
 provider "azurerm" {
   features {}
@@ -25,6 +32,7 @@ locals {
 resource "azurerm_resource_group" "main" {
   name     = var.resource_group_name
   location = var.location
+  tags     = module.tagging.tags
 }
 
 # Azure Container Registry (ACR)
@@ -34,6 +42,7 @@ resource "azurerm_container_registry" "acr" {
   location            = azurerm_resource_group.main.location
   sku                 = "Basic"
   admin_enabled       = true
+  tags     = module.tagging.tags
 }
 
 # Random string for ACR uniqueness
@@ -50,6 +59,7 @@ resource "azurerm_key_vault" "main" {
   resource_group_name = azurerm_resource_group.main.name
   tenant_id           = data.azurerm_client_config.current.tenant_id
   sku_name            = "standard"
+  tags     = module.tagging.tags
 
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
@@ -90,6 +100,7 @@ resource "azurerm_postgresql_flexible_server" "postgres" {
   version                = "11"
   administrator_login    = azurerm_key_vault_secret.pg_admin.value
   administrator_password = azurerm_key_vault_secret.pg_password.value
+  tags     = module.tagging.tags
 
   lifecycle {
     prevent_destroy = true
@@ -111,6 +122,7 @@ resource "azurerm_container_app_environment" "main" {
   name                = local.aca_env_name
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
+  tags     = module.tagging.tags
 }
 
 # Azure Container App for Web App
@@ -119,6 +131,7 @@ resource "azurerm_container_app" "webapp" {
   container_app_environment_id = azurerm_container_app_environment.main.id
   resource_group_name          = azurerm_resource_group.main.name
   revision_mode                = "Single"
+  tags     = module.tagging.tags
 
   template {
     container {
@@ -153,6 +166,7 @@ resource "azurerm_container_app" "api" {
   container_app_environment_id = azurerm_container_app_environment.main.id
   resource_group_name          = azurerm_resource_group.main.name
   revision_mode                = "Single"
+  tags     = module.tagging.tags
 
   template {
     container {
@@ -189,6 +203,7 @@ resource "azurerm_monitor_action_group" "main" {
   resource_group_name = azurerm_resource_group.main.name
   short_name          = var.monitor_short_name
   enabled             = true
+  tags     = module.tagging.tags
 
   email_receiver {
     name          = "admin"
@@ -202,6 +217,7 @@ resource "azurerm_monitor_metric_alert" "webapp_cpu" {
   scopes              = [azurerm_container_app.webapp.id]
   description         = "Alert when Web App CPU exceeds 70%"
   enabled             = true
+  tags     = module.tagging.tags
 
   criteria {
     metric_namespace = "microsoft.app/containerapps"
@@ -222,6 +238,7 @@ resource "azurerm_monitor_metric_alert" "api_cpu" {
   scopes              = [azurerm_container_app.api.id]
   description         = "Alert when API CPU exceeds 70%"
   enabled             = true
+  tags     = module.tagging.tags
 
   criteria {
     metric_namespace = "microsoft.app/containerapps"
