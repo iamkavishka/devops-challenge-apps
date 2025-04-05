@@ -1,5 +1,5 @@
 subscription_id        = "e6b1a91a-7af1-4025-8a99-f717210b4a91"
-resource_group_name    = "learn-2f5cf1ee-da4c-42ed-a4f2-a282d65d18d2"
+resource_group_name    = "wireapps-rg"
 location               = "East US"
 acr_name_prefix        = "wireappsacr"
 key_vault_name         = "wireapps-kv"
