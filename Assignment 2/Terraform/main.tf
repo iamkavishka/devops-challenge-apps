@@ -1,3 +1,13 @@
+# Configure the remote backend
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "tfstate-rg"
+    storage_account_name = "tfstate<random-name>"
+    container_name       = "tfstate"
+    key                  = "assignment2.tfstate"
+  }
+}
+
 # Configure the Azure provider
 provider "azurerm" {
   features {}
