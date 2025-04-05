@@ -14,6 +14,9 @@ This directory contains the Terraform configuration for Assignment 1, which depl
   - PostgreSQL credentials are stored in Azure Key Vault.
   - Tagging module applies consistent tags to all resources.
 - Remote Backend: State is stored in Azure Blob Storage.
+  
+## Lifecycle Block
+- The `lifecycle` block with `prevent_destroy = true` is used for the PostgreSQL server and database to prevent accidental deletion.
 
 ## Prerequisites
 - Azure CLI installed and logged in.
