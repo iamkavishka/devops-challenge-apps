@@ -7,7 +7,7 @@ variable "subscription_id" {
 variable "resource_group_name" {
   description = "Name of the resource group"
   type        = string
-  default     = "learn-2f5cf1ee-da4c-42ed-a4f2-a282d65d18d2"
+  default     = "wireapps-rg"
 }
 
 variable "location" {
