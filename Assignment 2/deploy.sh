@@ -23,7 +23,7 @@ if [ -d "$REPO_DIR" ]; then
     rm -rf $REPO_DIR
 fi
 
-# Clone the repository (replace with your repository URL)
+# Clone the repository
 git clone https://github.com/iamkavishka/devops-challenge-apps.git $REPO_DIR >> $LOG_FILE 2>&1
 cd $REPO_DIR
 echo "Repository cloned successfully" | tee -a $LOG_FILE
