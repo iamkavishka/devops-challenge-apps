@@ -183,7 +183,7 @@ resource "azurerm_container_app" "api" {
   depends_on = [azurerm_postgresql_flexible_server_database.db]
 }
 
-# Azure Monitor (Bonus: Basic Monitoring)
+# Azure Monitor (Basic Monitoring)
 resource "azurerm_monitor_action_group" "main" {
   name                = var.monitor_action_group_name
   resource_group_name = azurerm_resource_group.main.name
